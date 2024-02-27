@@ -1,13 +1,9 @@
 import streamlit as st
-from dotenv import load_dotenv
-import os
 from template import css, bot_template, user_template
-# from langchain.llms import HuggingFaceHub
 from pdf_2_txt import get_pdf_text
 from vectorstore import get_text_chunks, get_vectorstore
 from retreival_chain import get_conversation_chain
 
-load_dotenv()
 
 def handle_userinput(user_question):
     response = st.session_state.conversation({'question': user_question})
@@ -23,7 +19,7 @@ def handle_userinput(user_question):
 
 def main():
     
-    st.set_page_config(page_title="Chat with multiple PDFs",
+    st.set_page_config(page_title="PDF Chatbot",
                        page_icon=":books:")
     st.write(css, unsafe_allow_html=True)
 
@@ -32,7 +28,9 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    st.header("Chat with multiple PDFs :books:")
+    st.header("Multiple PDF Chatbot")
+    openAiKey = st.text_input(label="Input the openai api key", type="password")
+    # openai.api_key = openAiKey
     user_question = st.text_input("Ask a question about your documents:")
     if user_question:
         handle_userinput(user_question)
@@ -43,18 +41,10 @@ def main():
             "Upload your PDFs here and click on 'Process'", accept_multiple_files=True)
         if st.button("Process"):
             with st.spinner("Processing"):
-                # get pdf text
                 raw_text = get_pdf_text(pdf_docs)
-
-                # get the text chunks
                 text_chunks = get_text_chunks(raw_text)
-
-                # create vector store
-                vectorstore = get_vectorstore(text_chunks)
-
-                # create conversation chain
-                st.session_state.conversation = get_conversation_chain(
-                    vectorstore)
+                vectorstore = get_vectorstore(text_chunks,openAiKey)
+                st.session_state.conversation = get_conversation_chain(vectorstore,openAiKey)
 
 
 if __name__ == '__main__':

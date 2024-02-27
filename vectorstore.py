@@ -1,4 +1,4 @@
-from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
+from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.text_splitter import CharacterTextSplitter
 
@@ -12,8 +12,7 @@ def get_text_chunks(text):
     chunks = text_splitter.split_text(text)
     return chunks
 
-def get_vectorstore(text_chunks):
-    embeddings = OpenAIEmbeddings()
-    # embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
+def get_vectorstore(text_chunks,apikey):
+    embeddings = OpenAIEmbeddings(openai_api_key=apikey)
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     return vectorstore
