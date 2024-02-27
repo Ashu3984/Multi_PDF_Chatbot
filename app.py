@@ -1,5 +1,5 @@
 import streamlit as st
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 import os
 from template import css, bot_template, user_template
 # from langchain.llms import HuggingFaceHub
@@ -7,7 +7,7 @@ from pdf_2_txt import get_pdf_text
 from vectorstore import get_text_chunks, get_vectorstore
 from retreival_chain import get_conversation_chain
 
-# load_dotenv()
+load_dotenv()
 
 def handle_userinput(user_question):
     response = st.session_state.conversation({'question': user_question})
