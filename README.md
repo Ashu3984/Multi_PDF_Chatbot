@@ -2,6 +2,10 @@
 
 This is a web application built using Streamlit and ChatGPT that allows users to upload any PDF document and ask questions related to the content of the PDF.
 
+# Demo video
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://multipdfchatbot-ashu.streamlit.app/)
+
 ## Technologies Used
 
 - Langchain
@@ -15,14 +19,14 @@ This is a web application built using Streamlit and ChatGPT that allows users to
 - ChatGPT Integration: The application uses ChatGPT to understand and answer questions asked by users.
 
 ## Demo 
-![alt text](https://github.com/Ashu3984/PDF_GPT/blob/main/Screenshot%202024-02-26%20154612.png)
+![alt text](https://github.com/Ashu3984/Multi_PDF_Chatbot/blob/main/Screenshot%202024-02-27%20224124.png)
 
 ## Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Ashu3984/PDF_GPT.git
+   git clone https://github.com/Ashu3984/Multi_PDF_Chatbot.git
    ```
 
 2. Install the required dependencies:
@@ -33,14 +37,8 @@ This is a web application built using Streamlit and ChatGPT that allows users to
 
 ## Usage
 
-1. Run the application:
+Run the application:
 
    ```bash
-   python app.py
+   streamlit run app.py
    ```
-
-2. Enter your OpenAI API key.
-
-4. click the "Upload PDF" button and select the PDF file.
-
-5. Use the chatbox to ask questions or have a conversation with the chatbot.
